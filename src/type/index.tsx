@@ -24,4 +24,14 @@ type FolderImageType = {
   className?: string;
 };
 
-export type { FolderImageType, ChildImageType, VehicleType };
+type SizeLiveCamType = {
+  width: number;
+  height: number;
+};
+
+type UserType = {
+  username: string;
+  password: string;
+};
+
+export type { FolderImageType, ChildImageType, VehicleType, SizeLiveCamType, UserType };

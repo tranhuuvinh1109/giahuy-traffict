@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import manageAPI from '../../axios/manageAPI';
 import { VehicleType } from '../../type';
 import { useDebounce } from '../../hooks';
-import { DatePicker } from 'antd';
+import { DatePicker, Empty } from 'antd';
 import {
   GridItem,
   Stack,
@@ -99,7 +99,11 @@ const SearchPage = () => {
         </div>
       );
     }
-    return <div>none</div>;
+    return (
+      <div className="w-full h-full bg-white border rounded-md border-slate-300 flex justify-center items-center">
+        <Empty />
+      </div>
+    );
   }, [allLicense, debouncedInputValue, choosedDay, isOneDay, timeLabel]);
 
   useEffect(() => {

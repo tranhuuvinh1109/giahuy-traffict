@@ -1,8 +1,8 @@
-import { Checkbox, CheckboxGroup, Divider, Grid, GridItem, RadioGroup, Stack, Text } from '@chakra-ui/react';
+import { Checkbox, CheckboxGroup, Divider, Grid, GridItem, Stack, Text } from '@chakra-ui/react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { options, sideBar } from '../constant/options';
 import { Header } from '../components';
-import { Radio } from 'antd';
+import { Radio, RadioChangeEvent, Space } from 'antd';
 import { filters } from '../constant/filters';
 import { useContext } from 'react';
 import { APP_CONTEXT } from '../App';
@@ -10,7 +10,9 @@ import manageAPI from '../axios/manageAPI';
 const Layout = () => {
   const current = useLocation();
   const context = useContext(APP_CONTEXT);
-  const handleChangeRadio = (address: string) => {
+  console.log('Layout', context.address);
+  const handleChangeRadio = (e: RadioChangeEvent) => {
+    console.log('handleChangeRadio', e.target.value);
     if (context && context.setAddress) {
       const clear = async () => {
         try {
@@ -20,7 +22,7 @@ const Layout = () => {
         }
       };
       clear();
-      context.setAddress(address);
+      context.setAddress(e.target.value);
     }
   };
   return (
@@ -56,15 +58,18 @@ const Layout = () => {
                       <Text fontSize="xl" className="font-semibold" textAlign="left">
                         Select location
                       </Text>
-                      <RadioGroup onChange={handleChangeRadio} value={context.address}>
-                        {options.map((option) => {
-                          return (
-                            <Stack key={option.id} className="text-left px-1 py-2">
-                              <Radio value={option.value}>{option.label}</Radio>
-                            </Stack>
-                          );
-                        })}
-                      </RadioGroup>
+                      <Radio.Group onChange={handleChangeRadio} value={context.address} className="text-left">
+                        <Space direction="vertical">
+                          {options.map((option) => {
+                            return (
+                              <Radio value={option.value} key={option.id}>
+                                {option.label}
+                              </Radio>
+                            );
+                          })}
+                        </Space>
+                      </Radio.Group>
+
                       <Divider />
                       <CheckboxGroup>
                         {filters.map((filter) => {

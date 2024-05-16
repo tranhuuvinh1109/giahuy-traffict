@@ -128,14 +128,17 @@ const ManagePage = () => {
       <div>
         <div className="flex justify-between px-10">
           <div className="w-[20%]">
-            <div className="text-left flex justify-between py-3">
+            <div className="text-left flex flex-col gap-2 justify-between py-3">
               <button
-                className="px-4 py-2 bg-cyan-600  font-semibold rounded-md hover:bg-cyan-800"
+                className="px-4 py-2 bg-cyan-600  text-white font-semibold rounded-md hover:bg-cyan-800"
                 onClick={handleDetechlicense}
               >
                 Detech license
               </button>
-              <button className="px-4 py-2 bg-red-600  font-semibold rounded-md hover:bg-red-800" onClick={showModal}>
+              <button
+                className="px-4 py-2 bg-red-600 text-white  font-semibold rounded-md hover:bg-red-800"
+                onClick={showModal}
+              >
                 Delete all
               </button>
             </div>
